@@ -5,7 +5,6 @@ const addProduct = async(req,res)=>{
     try{
         const {productName,price,stock} =req.body;
 
-        //const barcode = generateBarcode()
 
         const product = await productModel.create({productName,price,stock});
         res.status(500).json({message:"Product added successfully", product});
