@@ -13,9 +13,9 @@ const billSchema = new mongoose.Schema({
         required : true,
     },
     products:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Product",
-        required: true,
+        product:{ type:mongoose.Schema.Types.ObjectId,ref:"Product"},
+        quantity:{ type: Number,required:true},
+        price:{ type: Number,required:true},
     },
     discount: { type: Number, default:0},
     totalAmount:{type: Number, required:true},

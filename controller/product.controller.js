@@ -17,7 +17,7 @@ const addProduct = async(req,res)=>{
 const getAllProduct = async(req,res)=>{
     try{
         const products = await productModel.find();
-        res.status(200).json({message: err.message});
+        res.status(200).json({message: "Sucessfull",products});
     } catch(err){
         res.status(500).json({message: err.message})
     }
@@ -25,13 +25,15 @@ const getAllProduct = async(req,res)=>{
 
 const updateProduct = async(req,res)=>{
     try{
+        const { id} = req.query
+        const {productName,price,stock} =req.body;
         const products = await productModel.findByIdAndUpdate(id ,{
             productName,
             price,
             stock,
         });
 
-        res.status(200).json({message: "Product Updated successfully", updatedProduct});
+        res.status(200).json({message: "Product Updated successfully", products});
     } catch(err){
         res.status(500).json({ message: err.message});
     }
@@ -40,7 +42,7 @@ const updateProduct = async(req,res)=>{
 const deleteProduct = async(req,res)=>{
     try{
         const{id}= req.query;
-        const deleteProduct = await Product.findByIdAndDelete(id);
+        const deleteProduct = await productModel.findByIdAndDelete(id);
         res.status(200).json({message: "Product deleted succesfully", deleteProduct});
     } catch(err){
         res.status(500).json({message: err.message})
